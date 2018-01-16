@@ -1,0 +1,7 @@
+03-compute-resources/account.json
+.terraform
+terraform.tfstate
+terraform.tfstate.backup
+.idea
+*.iml
+
