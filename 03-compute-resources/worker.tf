@@ -2,8 +2,8 @@
 resource "google_compute_instance" "worker" {
   name         = "worker${count.index}"
   count        = "${var.worker_instance_count}"
-  machine_type = "n1-standard-1"
-  zone         = "europe-west1-b"
+  machine_type = "${var.machine_type}"
+  zone         = "${var.zone}"
   tags         = ["kubernetes-the-soft-way", "worker"]
 
   service_account {
