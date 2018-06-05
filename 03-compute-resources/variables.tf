@@ -15,7 +15,7 @@ variable "machine_type" {
 }
 
 variable "controller_instance_count" {
-  default = 3
+  default = 1
 }
 
 variable "worker_instance_count" {
