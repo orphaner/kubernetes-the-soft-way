@@ -1,4 +1,13 @@
 // Create three compute instances which will host the Kubernetes control plane:
+resource "google_compute_disk" "gluster_disk" {
+  name  = "gluster-disk-${count.index}"
+  count = "${var.worker_instance_count}"
+  type  = "pd-standard"
+  zone  = "${var.zone}"
+  size  = 300
+
+}
+
 resource "google_compute_instance" "worker" {
   name         = "worker${count.index}"
   count        = "${var.worker_instance_count}"
@@ -13,8 +22,12 @@ resource "google_compute_instance" "worker" {
   boot_disk {
     initialize_params {
       image = "ubuntu-os-cloud/ubuntu-1604-lts"
-      size  = 200
+      size  = 50
     }
+  }
+
+  attached_disk {
+    source = "gluster-disk-${count.index}"
   }
 
   network_interface {
