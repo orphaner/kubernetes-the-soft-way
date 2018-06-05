@@ -26,6 +26,22 @@ resource "google_compute_firewall" "kubernetes-the-soft-way-allow-internal" {
   source_ranges = ["10.240.0.0/24", "10.200.0.0/16"]
 }
 
+# Create a firewall rule that allows internal communication for calico
+resource "google_compute_firewall" "kubernetes-the-soft-way-allow-calico" {
+  name    = "kubernetes-the-soft-way-allow-internal"
+  network = "${google_compute_network.kubernetes-the-soft-way.name}"
+
+  allow {
+    protocol = "icmp"
+  }
+
+  allow {
+    protocol = "tcp"
+  }
+
+  source_ranges = ["10.128.0.0/9"]
+}
+
 # Create a firewall rule that allows external SSH, ICMP, and HTTPS:
 resource "google_compute_firewall" "kubernetes-the-soft-way-allow-external" {
   name    = "kubernetes-the-soft-way-allow-external"
