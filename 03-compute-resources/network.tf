@@ -28,7 +28,7 @@ resource "google_compute_firewall" "kubernetes-the-soft-way-allow-internal" {
 
 # Create a firewall rule that allows internal communication for calico
 resource "google_compute_firewall" "kubernetes-the-soft-way-allow-calico" {
-  name    = "kubernetes-the-soft-way-allow-internal"
+  name    = "kubernetes-the-soft-way-allow-calico"
   network = "${google_compute_network.kubernetes-the-soft-way.name}"
 
   allow {
