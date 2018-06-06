@@ -32,11 +32,7 @@ resource "google_compute_firewall" "kubernetes-the-soft-way-allow-calico" {
   network = "${google_compute_network.kubernetes-the-soft-way.name}"
 
   allow {
-    protocol = "icmp"
-  }
-
-  allow {
-    protocol = "tcp"
+    protocol = "ipip"
   }
 
   source_ranges = ["10.128.0.0/9"]
